@@ -1,0 +1,166 @@
+.header {
+    background-color: #ffffff6b;
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    backdrop-filter: blur(15px);
+
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    left: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.navbar {
+    height: 100%;
+    width: 40%;
+    min-width: 500px;
+    max-width: 700px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    right: 80px;
+}
+
+.navbar>* {
+    color: black;
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: bold;
+    border: 3px solid black;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.br {
+    border-radius: 50px;
+}
+
+.bgw {
+    color: black;
+    background-color: transparent;
+}
+
+.bgw::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: black;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    transition: var(--transition);
+    border-radius: 50px;
+}
+
+.bgw:hover::before {
+    left: 0;
+}
+
+.bgw:hover {
+    color: white;
+}
+
+.bgb {
+    color: white;
+    background-color: black;
+    transition: .3s ease color !important;
+}
+
+.bgb::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: white;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    transition: var(--transition);
+    border-radius: 50px;
+}
+
+.bgb::after {
+    content: attr(n);
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    position: absolute;
+    left: 0%;
+    top: 0;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgb:hover::after {
+    color: black;
+}
+
+.bgb:hover::before {
+    left: 0;
+}
+
+.bgb:hover {
+    color: transparent;
+}
+
+.section {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section::before {
+    content: '';
+    background-color: black;
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    left: -100%;
+    bottom: 25%;
+    transition: var(--transition);
+    /* bottom: -10px; */
+
+}
+
+.section:hover {}
+
+.section:hover::before {
+    left: 0;
+}
+
+.scrollProgress {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: black;
+    transition: var(--transition);
+}

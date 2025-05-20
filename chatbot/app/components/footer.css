@@ -1,0 +1,25 @@
+.footerSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: 15px;
+    flex-direction: column;
+    min-height: 270px;
+}
+
+.fSectionTitle {
+    color: #b9b9b9;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footerLink {
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+
+.footerLink:hover {
+    color: #4FACFE;
+    text-decoration: underline;
+}

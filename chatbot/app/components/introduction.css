@@ -1,0 +1,16 @@
+.welcomeMessage {
+    height: 50px;
+    width: 720px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.word {
+    background-image: var(--gradient);
+    background-clip: text;
+    color: transparent;
+    height: 50px;
+}
