@@ -90,12 +90,13 @@ async function FetchHistory() {
 
 	return myPromise;
 }
-function renderChatHistory(history: string) {
+function renderChatHistory(history: string | null) {
+	if (!history) return <>there was an error</>;
 	const data = JSON.parse(history);
 
 	return (
 		<>
-			{...data.map((e) => {
+			{...data.map((e: object) => {
 				const h4 = document.createElement("h4");
 				h4.innerHTML = e.name;
 				h4.classList.add("chatTopic");
@@ -109,7 +110,7 @@ function renderChatHistory(history: string) {
 function handleOptionClick(ev: MouseEvent) {
 	ev.currentTarget.classList.toggle("active");
 }
-function handleAttachmentClick(ev: MouseEvent) {
+function handleAttachmentClick() {
 	return;
 	// ev.currentTarget.classList.toggle("active")
 }
@@ -135,7 +136,7 @@ async function setHistory() {
 setHistory();
 
 function Body() {
-	let currentTopic = null;
+	let currentTopic: string | null = null;
 	const h1 = useRef<HTMLDivElement>(null);
 	const input = useRef<HTMLInputElement>(null);
 	const container = useRef<HTMLDivElement>(null);
