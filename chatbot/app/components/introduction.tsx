@@ -42,7 +42,7 @@ function Introduction() {
 				onClick={() => {
 					router.push("../chat");
 				}}
-				n={"GET STARTED"}
+				data-n={"GET STARTED"}
 				className="btn bgb br bold mrt100"
 			>
 				GET STARTED

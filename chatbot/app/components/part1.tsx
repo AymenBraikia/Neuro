@@ -3,14 +3,15 @@ import "./part1.css";
 import { useRef, useEffect } from "react";
 
 function Part1() {
-	const container = useRef(null);
-	const step1 = useRef(null);
-	const step2 = useRef(null);
-	const step3 = useRef(null);
-	const step4 = useRef(null);
+	const container = useRef<HTMLDivElement>(null);
+	const step1 = useRef<HTMLDivElement>(null);
+	const step2 = useRef<HTMLDivElement>(null);
+	const step3 = useRef<HTMLDivElement>(null);
+	const step4 = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
+			if (!step1.current || !container.current || !step2.current || !step3.current || !step4.current) return;
 			if (scrollY >= 1572) {
 				step1.current.classList.add("active");
 				container.current.classList.add("active");
