@@ -16,6 +16,11 @@ import code from "../../../public/code-svgrepo-com.svg";
 import "./body.css";
 import { useRef, useEffect } from "react";
 
+interface historyInfo {
+	props: {
+		children: HTMLElement[];
+	};
+}
 interface topicITFC {
 	name: string;
 }
@@ -130,7 +135,7 @@ function getTopic(e: string) {
 async function setHistory() {
 	const recent = document.querySelector(".recent");
 	if (recent && localStorage.getItem("chat_history")) {
-		const info = await FetchHistory();
+		const info: historyInfo = (await FetchHistory()) as historyInfo;
 		recent.innerHTML = "";
 
 		info.props.children.forEach((e: HTMLElement) => {
