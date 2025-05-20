@@ -5,15 +5,15 @@ import logo from "../../public/neuro_dark.png";
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 
-function header() {
-	const scrollProgress = useRef(null);
+function Header() {
+	const scrollProgress = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			const scrollTop = scrollY;
 			const docHeight = document.documentElement.scrollHeight - innerHeight;
 			const scrollPercent = (scrollTop / docHeight) * 100;
-			scrollProgress.current.style.width = scrollPercent + "%";
+			if (scrollProgress.current) scrollProgress.current.style.width = scrollPercent + "%";
 		});
 	}, []);
 
@@ -34,4 +34,4 @@ function header() {
 	);
 }
 
-export default header;
+export default Header;

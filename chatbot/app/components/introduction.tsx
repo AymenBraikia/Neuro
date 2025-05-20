@@ -4,18 +4,17 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 function Introduction() {
-	// let [counter,updateCounter] = useState(0);
-	let [counter, updateCounter] = useState(0);
+	const [counter, updateCounter] = useState(0);
 
 	const router = useRouter();
 
-	const ref = useRef(null);
+	const ref = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			if (counter > 3) {
-				updateCounter((counter = 0));
+				updateCounter(0);
 			} else {
-				updateCounter(counter++);
+				updateCounter(counter + 1);
 			}
 
 			if (ref.current) ref.current.style.top = 4 - 50 * counter + "px";
@@ -39,7 +38,13 @@ function Introduction() {
 			<p className="mrt50" style={{ fontSize: 20, fontWeight: 400 }}>
 				Save Your Time By With Our <span style={{ textDecoration: "underline" }}>AI-Model</span>
 			</p>
-			<div onClick={() => {router.push("../chat")}} n={"GET STARTED"} className="btn bgb br bold mrt100">
+			<div
+				onClick={() => {
+					router.push("../chat");
+				}}
+				n={"GET STARTED"}
+				className="btn bgb br bold mrt100"
+			>
 				GET STARTED
 			</div>
 		</>
