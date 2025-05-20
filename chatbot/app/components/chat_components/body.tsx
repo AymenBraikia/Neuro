@@ -16,6 +16,10 @@ import code from "../../../public/code-svgrepo-com.svg";
 import "./body.css";
 import { useRef, useEffect } from "react";
 
+interface topicITFC {
+	name: string;
+}
+
 async function fetchReply(question: Array<object>): Promise<string> {
 	const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
 		method: "POST",
@@ -73,7 +77,8 @@ function startThinking() {
 }
 
 function stopThinking() {
-	document.querySelector(".dotsContainer")?.parentElement?.removeChild(document.querySelector(".dotsContainer"));
+	const dots = document.querySelector(".dotsContainer");
+	if (dots) dots?.parentElement?.removeChild(dots);
 
 	return null;
 }
@@ -96,7 +101,7 @@ function renderChatHistory(history: string | null) {
 
 	return (
 		<>
-			{...data.map((e: object) => {
+			{...data.map((e: topicITFC) => {
 				const h4 = document.createElement("h4");
 				h4.innerHTML = e.name;
 				h4.classList.add("chatTopic");
@@ -107,8 +112,9 @@ function renderChatHistory(history: string | null) {
 	);
 }
 
-function handleOptionClick(ev: MouseEvent) {
-	ev.currentTarget.classList.toggle("active");
+function handleOptionClick(ev: React.MouseEvent<HTMLParagraphElement>) {
+	const target = ev.currentTarget as HTMLElement;
+	target.classList.toggle("active");
 }
 function handleAttachmentClick() {
 	return;
@@ -122,12 +128,13 @@ function getTopic(e: string) {
 }
 
 async function setHistory() {
-	if (document.querySelector(".recent") && localStorage.getItem("chat_history")) {
+	const recent = document.querySelector(".recent");
+	if (recent && localStorage.getItem("chat_history")) {
 		const info = await FetchHistory();
-		document.querySelector(".recent").innerHTML = "";
+		recent.innerHTML = "";
 
-		info.props.children.forEach((e) => {
-			document.querySelector(".recent")?.appendChild(e);
+		info.props.children.forEach((e: HTMLElement) => {
+			recent?.appendChild(e);
 		});
 	} else setTimeout(setHistory, 1000);
 
@@ -145,12 +152,13 @@ function Body() {
 	const messages: Array<object> = [];
 
 	async function Submit() {
+		if (!input.current?.value || !input.current) return;
 		if (document.querySelectorAll("h1").length > 1) {
 			h1.current?.classList.add("active");
 
 			const chat_history = localStorage.getItem("chat_history");
 
-			const topic = await getTopic(input.current?.value);
+			const topic = await getTopic(input.current.value);
 			currentTopic = topic;
 			localStorage.setItem("last_topic", topic);
 
@@ -220,11 +228,12 @@ function Body() {
 		}, 5);
 
 		// update topic messages
+		const savedHistory = localStorage.getItem("chat_history");
 
-		if (localStorage.getItem("chat_history")) {
-			const oldHistory = JSON.parse(localStorage.getItem("chat_history"));
+		if (savedHistory) {
+			const oldHistory = JSON.parse(savedHistory);
 
-			let unedited = oldHistory.find((e: object) => {
+			let unedited = oldHistory.find((e: topicITFC) => {
 				return e.name == currentTopic;
 			});
 
@@ -236,7 +245,7 @@ function Body() {
 			}
 
 			const edited = [
-				...oldHistory.filter((e) => {
+				...oldHistory.filter((e: topicITFC) => {
 					return e.name !== unedited.name;
 				}),
 				unedited,
@@ -248,6 +257,7 @@ function Body() {
 
 	useEffect(() => {
 		document.addEventListener("keypress", (k) => {
+			if (!input.current) return;
 			if (k.code == "Enter" && document.activeElement == input.current && input.current.value.length > 0) Submit();
 			if (document.activeElement !== chat.current) input.current?.focus();
 		});
