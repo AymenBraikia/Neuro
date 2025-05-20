@@ -1,21 +1,18 @@
 "use client";
 import "./introduction.css";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-function Introduction() {
-	const [counter, updateCounter] = useState(0);
+let counter = 0;
 
+function Introduction() {
 	const router = useRouter();
 
 	const ref = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			if (counter > 3) {
-				updateCounter(0);
-			} else {
-				updateCounter(counter + 1);
-			}
+			if (counter > 3) counter = 0;
+			else counter++;
 
 			if (ref.current) ref.current.style.top = 4 - 50 * counter + "px";
 		}, 1500);
