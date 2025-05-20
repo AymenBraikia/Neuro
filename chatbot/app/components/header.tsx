@@ -24,7 +24,7 @@ function Header() {
 				<div className="section">Pricing</div>
 				<div className="section">About Us</div>
 				<div className="section">Log In</div>
-				<div n={"Book Demo"} className="btn br bgb">
+				<div data-n={"Book Demo"} className="btn br bgb">
 					Book Demo
 				</div>
 				<div className="btn br bgw">Sign Up</div>

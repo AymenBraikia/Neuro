@@ -100,7 +100,7 @@
 }
 
 .bgb::after {
-    content: attr(n);
+    content: attr(data-n);
     color: transparent;
     width: 100%;
     height: 100%;
