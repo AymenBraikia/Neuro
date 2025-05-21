@@ -1,53 +1,35 @@
 .app {
+    height: 70%;
+    width: 100%;
     margin: 50px 0 0 20px;
-    width: 90%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    height: 383px;
-    color: black;
+    color: var(--foreground);
 }
 
 .appPfp {
     position: relative;
     width: fit-content;
-    left: 40px;
+    left: 20px;
     font-size: 20px;
 }
 
-.appPfp::before {
-    content: "";
-    position: absolute;
-    left: -40px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: currentColor;
-}
-
 .neuroPfp {
-    background-image: var(--gradient);
-    color: transparent;
-    background-clip: text;
-}
-
-.appPfp.neuroPfp::before {
-    background-image: var(--gradient);
+    color: var(--foreground);
 }
 
 .appText {
-    margin-left: 30px;
+    margin-left: 10px;
     padding: 0 10px;
 }
 
 .appInput {
     width: 80%;
     padding: 10px;
-    background-color: #f5f5f5;
-    color: #676767;
+    background-color: var(--background3);
+    color: var(--foreground);
     border: 1px solid #969595;
     text-indent: 5px;
 }
@@ -56,14 +38,14 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #93F9B9;
+    background-color: var(--foreground);
     position: relative;
 }
 
 .appSubmit::before {
     content: '';
-    border-top: 2px solid white;
-    border-left: 2px solid white;
+    border-top: 2px solid var(--background3);
+    border-left: 2px solid var(--background3);
     transform: rotate(45deg) translate(-50%, -50%);
     width: 8px;
     height: 8px;
@@ -81,5 +63,88 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    background-color: white;
+    background-color: var(--background3);
+}
+
+.phoneContainer {
+    position: relative;
+    width: 400px;
+    height: 700px;
+    background: var(--background);
+    border: 10px solid #2c2c2c;
+    border-radius: 50px;
+}
+
+.keyboard {
+    width: 100%;
+    height: 30%;
+    background-color: var(--background3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 3px;
+    column-gap: 3px;
+    padding: 10px;
+}
+
+.key {
+    width: 35px;
+    height: 40px;
+    background-color: var(--background);
+    color: var(--foreground);
+    outline: none;
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    box-shadow: 0px 2px 9px -4px black;
+    border-bottom-color: #b2b2b2;
+    cursor: pointer;
+    user-select: none;
+    font-family: sans-serif;
+    transition: var(--transition);
+}
+
+.key:hover {
+    background-color: var(--background3);
+}
+
+.key2 {
+    width: fit-content;
+    padding: 0 10px;
+    background-color: var(--background3);
+}
+
+.key:hover {
+    background-color: var(--background2);
+}
+
+.keyspace {
+    width: 180px;
+}
+
+.battery {
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--background3);
+    border: 3px solid var(--foreground);
+    border-radius: 8px;
+    position: relative;
+    padding: 0 5px;
+    font-size: 13px;
+
+    overflow-x: unset;
+}
+
+.battery::before {
+    content: '';
+    height: 7px;
+    width: 5px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(100%, -50%);
+    background-color: var(--foreground);
+    border-radius: 5px;
 }
