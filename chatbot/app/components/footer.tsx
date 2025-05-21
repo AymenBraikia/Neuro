@@ -80,7 +80,7 @@ function Discord() {
 
 function Footer() {
 	return (
-		<footer className="mrt100" style={{ width: "100vw", height: 400, background: "var(--foreground)", color: "var(--background)", display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
+		<footer className="mrt100" style={{ width: "100vw", height: 400, color: "var(--foreground)", background: "var(--background)", display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
 			<div style={{ width: "50%", justifyContent: "flex-start", rowGap: 40 }} className="footerSection">
 				<h1>Neuro</h1>
 				<p style={{ width: "80%" }}>Advanced AI-powered research assistant that helps you find, analyze, and summarize information from across the web.</p>
