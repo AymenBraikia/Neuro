@@ -23,3 +23,16 @@
     color: #4FACFE;
     text-decoration: underline;
 }
+
+.socialMedia {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 20px;
+}
+
+.socialMedia>* {
+    cursor: pointer;
+}

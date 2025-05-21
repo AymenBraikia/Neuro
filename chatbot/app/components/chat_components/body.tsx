@@ -109,6 +109,11 @@ function renderChatHistory(history: string | null) {
 			{...data.map((e: topicITFC) => {
 				const h4 = document.createElement("h4");
 				h4.innerHTML = e.name;
+
+				h4.onclick = () => {
+					loadMessages(e.name);
+					h4.classList.add("active");
+				};
 				h4.classList.add("chatTopic");
 
 				return h4;
@@ -134,7 +139,7 @@ function getTopic(e: string) {
 
 async function setHistory() {
 	const recent = document.querySelector(".recent");
-	if (recent && localStorage.getItem("chat_history")) {
+	if (recent && localStorage.getItem("chat_history") && document.readyState == "complete") {
 		const info: historyInfo = (await FetchHistory()) as historyInfo;
 		recent.innerHTML = "";
 
@@ -146,6 +151,42 @@ async function setHistory() {
 	// recent
 }
 setHistory();
+
+function loadMessages(name: string) {
+	const history = localStorage.getItem("chat_history"),
+		container = document.querySelector(".container");
+
+	if (!history || !container || localStorage.getItem("last_topic") !== name) return;
+
+	const messages = JSON.parse(history).filter((e: topicITFC) => {
+		return e.name == name;
+	})[0].messages;
+
+	messages.forEach((message: string, index: number) => {
+		const myMessageContainer = document.createElement("div");
+		const myMessage = document.createElement("p");
+
+		myMessage.innerHTML = message;
+
+		myMessage.classList.add("active");
+		myMessage.classList.add(index % 2 == 1 ? "reply" : "myMessage");
+		myMessageContainer.classList.add(index % 2 == 1 ? "replyContainer" : "myMessageContainer");
+
+		myMessageContainer.appendChild(myMessage);
+		container.appendChild(myMessageContainer);
+	});
+
+	localStorage.setItem("last_topic", name);
+
+	if (document.querySelectorAll("h1").length > 1) {
+		const h1 = document.querySelectorAll("h1")[1];
+
+		h1.parentElement?.removeChild(h1);
+	}
+}
+// setTimeout(() => {
+// loadMessages("Unknown Topic");
+// }, 1500);
 
 function Body() {
 	let currentTopic: string | null = null;

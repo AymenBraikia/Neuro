@@ -1,11 +1,13 @@
 .welcomeMessage {
-    height: 50px;
+    height: fit-content;
     width: 720px;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .word {
@@ -13,4 +15,9 @@
     background-clip: text;
     color: transparent;
     height: 50px;
+}
+
+.learn {
+
+    /* transition: 0s .3s linear !important; */
 }
