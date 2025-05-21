@@ -111,7 +111,7 @@
 }
 
 .key2 {
-    width: fit-content;
+    width: fit-content !important;
     padding: 0 10px;
     background-color: var(--background3);
 }

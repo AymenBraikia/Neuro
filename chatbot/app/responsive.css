@@ -1,4 +1,4 @@
-*{
+* {
     overflow-x: hidden;
 }
 
@@ -32,15 +32,26 @@
         margin: unset;
         justify-content: flex-start !important;
         height: fit-content !important;
-        padding-top: 250px;
+        padding-top: 80px;
         /* height: 400px !important; */
+        row-gap: 50px;
+    }
+
+    .app {
+        height: 58%;
+    }
+
+    .key {
+        width: 30px;
+        height: 35px;
+    }
+
+    .keyspace{
+        width: 150px;
     }
 
     .phoneContainer {
-        right: 0 !important;
         width: 95% !important;
-        max-height: 800px !important;
-        min-height: 800px !important;
         overflow-y: hidden;
     }
 
@@ -105,7 +116,8 @@
         width: 100vw;
         justify-content: center;
     }
-    .reason{
+
+    .reason {
         min-width: 95%;
     }
 
