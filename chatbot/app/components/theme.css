@@ -3,14 +3,16 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(0);
     opacity: 0;
     margin-top: 50px;
     transition: var(--transition);
+    transform: translate(-50%, -50%) rotate(-180deg);
 }
 
 .sun.active,
 .moon.active {
+    transform: translate(-50%, -50%) rotate(0);
     opacity: 1;
     margin-top: 0;
 }
