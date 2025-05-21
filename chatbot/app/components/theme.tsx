@@ -171,7 +171,7 @@ function Theme() {
 	}, []);
 
 	return (
-		<div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5 }}>
+		<div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5,overflow:"hidden" }}>
 			<div onClick={switchTheme}>
 				{Moon()}
 				{Sun()}
