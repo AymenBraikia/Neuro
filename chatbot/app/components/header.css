@@ -49,7 +49,7 @@ header.active {
 .btn {
     padding: 10px 20px;
     cursor: pointer;
-    font-size: bold;
+    font-weight: bold;
     border: 3px solid var(--foreground);
     transition: var(--transition);
     position: relative;

@@ -75,6 +75,6 @@
 .tryNow {
 	font-size: 25px;
 	border: unset;
-	box-shadow: 0px 4px 10px -7px var(--foreground);
+	/* box-shadow: 0px 4px 10px -7px var(--foreground); */
 	padding: 13px 40px;
 }
