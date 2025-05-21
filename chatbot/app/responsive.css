@@ -1,0 +1,109 @@
+* {
+    overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        width: 50%;
+        min-width: fit-content;
+        max-width: 50vw;
+        right: 0;
+    }
+
+    .navbar>* {
+        display: none;
+    }
+
+    [data-n="Get Started"] {
+        display: flex;
+    }
+
+    .welcomeMessage {
+        font-size: 30px !important;
+    }
+
+    p.mrt50 {
+        max-width: 90%;
+        font-size: 18px !important;
+    }
+
+    div.mrt50 {
+        flex-direction: column;
+        margin: unset;
+        justify-content: flex-start !important;
+        height: fit-content !important;
+        padding-top: 250px;
+        /* height: 400px !important; */
+    }
+
+    .phoneContainer {
+        right: 0 !important;
+        width: 90% !important;
+        max-height: 800px !important;
+        min-height: 800px !important;
+        overflow-y: hidden;
+    }
+
+    div.mrt50>div.bold {
+        width: 90% !important;
+        font-size: 33px !important;
+    }
+
+    [alt="Phone"] {
+        height: 746px !important;
+        width: 378px !important;
+        transform: translate(0, 0) !important;
+    }
+
+    .phoneContent {
+        top: 24px !important;
+        left: 13px !important;
+    }
+
+    .appPfp {
+        overflow-x: visible !important;
+    }
+
+    .part1 {
+        margin: unset !important;
+        padding-top: 150px;
+    }
+
+    div.mrt150>h1,
+    .part1>h1 {
+        text-align: center;
+        font-size: 35px !important;
+    }
+
+    .part1>p {
+        width: 90% !important;
+        font-size: 20px !important;
+    }
+
+    .steps {
+        flex-direction: column !important;
+        row-gap: 20px;
+    }
+
+    .step {
+        width: 90% !important;
+        max-width: unset;
+    }
+
+    div.mrt150>p {
+        max-width: 90vw;
+    }
+    .reasons{
+        width: 100vw;
+        justify-content: center;
+    }
+
+    footer{
+        flex-direction: column-reverse;
+        min-height: 1200px;
+        overflow-y: hidden;
+    }
+    footer>*{
+        width: 90vw !important;
+    }
+}

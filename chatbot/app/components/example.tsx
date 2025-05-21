@@ -5,7 +5,7 @@ import "./example.css";
 function Example() {
 	return (
 		<div className="mrt50" style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", height: "800px" }}>
-			<div style={{ position: "relative", right: 200, width: 400 }}>
+			<div className="phoneContainer" style={{ position: "relative", right: 200, width: 400 }}>
 				<Image  style={{transform: "scale(0.418) translate(-121px, 318px)" }} src={phone} alt="Phone" />
 				<div style={{ zIndex: -1, width: "350px", height: "700px", background: "white", position: "absolute", left: 225, top: 676, borderRadius: 55 }} className="phoneContent">
 					<div className="app">
