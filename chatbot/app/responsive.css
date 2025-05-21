@@ -54,6 +54,9 @@
         width: 95% !important;
         overflow-y: hidden;
     }
+    .keyboard{
+        height: 40%;
+    }
 
     div.mrt50>div.bold {
         width: 90% !important;
