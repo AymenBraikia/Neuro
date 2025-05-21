@@ -63,6 +63,8 @@ function Header() {
 	const header = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		alert([screen.availHeight, screen.availWidth]);
+
 		document.addEventListener("scroll", () => {
 			if (scrollY > 50) header.current?.classList.add("active");
 			else header.current?.classList.remove("active");
