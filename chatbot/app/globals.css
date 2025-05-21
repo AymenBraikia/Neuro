@@ -4,16 +4,11 @@
   /* --foreground: #171717; */
   --foreground: #000000;
   --background: #ffffff;
+  --background2: #fbfbfb;
+  --background3: #eee;
   --background-opacity: #ffffff99;
   --gradient: linear-gradient(135deg, #4f55fe, #00F2FE);
   --transition: .3s ease;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #0a0a0a;
-    --foreground: #ededed; */
-  }
 }
 
 html,

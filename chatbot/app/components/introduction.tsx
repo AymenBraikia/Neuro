@@ -33,7 +33,7 @@ function Introduction() {
 					}}
 					data-n={"GET STARTED"}
 					className="btn bgw br bold"
-					style={{ border: "unset", boxShadow: "0px 4px 10px -7px black", padding: "13px 23px" }}
+					style={{ border: "unset", boxShadow: "0px 4px 10px -7px var(--foreground)", padding: "13px 23px" }}
 					>
 					GET STARTED
 				</div>
@@ -41,7 +41,7 @@ function Introduction() {
 					onClick={() => {
 						router.push("../chat");
 					}}
-					style={{ border: "1px solid black", boxShadow: "0px 4px 10px -7px black", padding: "13px 23px" }}
+					style={{ border: "1px solid var(--foreground)", boxShadow: "0px 4px 10px -7px var(--foreground)", padding: "13px 23px" }}
 					data-n={"LEARN MORE"}
 					className="btn bgb br bold learn"
 				>

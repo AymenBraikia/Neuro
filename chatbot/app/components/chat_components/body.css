@@ -24,7 +24,7 @@
 .burger>span {
     width: 100%;
     height: 5px;
-    background-color: black;
+    background-color: var(--foreground);
     border-radius: 5px;
 }
 
@@ -114,7 +114,7 @@ header.active,
     border-radius: 50px;
     padding: 0px 15px;
     border: 1px solid #646464;
-    background-color: #eee;
+    background-color: var(--background3);
     cursor: pointer;
     transition: var(--transition);
     display: flex;
@@ -174,7 +174,7 @@ h1.active {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: black;
+    background-color: var(--foreground);
     margin: 3px;
 }
 
