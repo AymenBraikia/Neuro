@@ -34,7 +34,7 @@ function phone() {
 						Today in London, the wind is blowing at a gentle speed of around 6 mph (10 km/h) from the east-northeast. The weather is generally calm with partly cloudy skies, and the light breeze is expected to remain steady throughout the day.
 					</div>
 				</div>
-				<hr style={{ width: 370, position: "relative", right: 10, backgroundColor: "var(--background)" }} />
+				<hr style={{ width: "100%", position: "relative", right: 10, backgroundColor: "var(--background)" }} />
 				<div style={{ width: "100%", display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
 					<div className="appInput br">
 						Message <div>+</div>
