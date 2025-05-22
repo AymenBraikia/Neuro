@@ -1,8 +1,9 @@
 "use client";
 import "./header.css";
+import Theme from "./theme";
+import "./theme.css";
 
-// import logo from "../../public/neuro_dark.png";
-// import Image from "next/image";
+
 import { useRef, useEffect } from "react";
 
 function Logo() {
@@ -58,12 +59,12 @@ function Logo() {
 	);
 }
 
-function Header() {
+function 
+Header() {
 	const scrollProgress = useRef<HTMLDivElement>(null);
 	const header = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-
 		document.addEventListener("scroll", () => {
 			if (scrollY > 50) header.current?.classList.add("active");
 			else header.current?.classList.remove("active");
@@ -87,6 +88,7 @@ function Header() {
 					Get Started
 				</div>
 				<div className="btn br bgw">Log In</div>
+				<Theme />
 			</nav>
 			<div ref={scrollProgress} className="scrollProgress"></div>
 		</header>

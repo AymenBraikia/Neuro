@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import "./theme.css";
 
 function switchTheme() {
 	const root = document.querySelector(":root") as HTMLElement,
@@ -179,7 +178,8 @@ function Theme() {
 	}, []);
 
 	return (
-		<div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
+		// <div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
+		<div style={{ width: 70, height: 70, backgroundColor: "transparent", borderRadius: "50%",position:"relative", cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
 			<div onClick={switchTheme}>
 				{Moon()}
 				{Sun()}
