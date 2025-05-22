@@ -9,7 +9,6 @@ header {
     left: 0;
     top: 0;
     z-index: 5;
-    backdrop-filter: blur(15px);
     transition: var(--transition);
     box-shadow: 0 0 0 0 transparent;
     backdrop-filter: blur(5px);
@@ -155,8 +154,6 @@ header.active {
 
 }
 
-.section:hover {}
-
 .section:hover::before {
     left: 0;
 }
@@ -169,4 +166,12 @@ header.active {
     height: 3px;
     background-color: var(--foreground);
     transition: var(--transition);
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* cursor: pointer; */
 }

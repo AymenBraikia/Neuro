@@ -65,6 +65,7 @@ form {
     align-items: flex-start;
 }
 
+input[type="text"],
 input[type="submit"],
 input[type="email"],
 input[type="password"] {
@@ -80,6 +81,7 @@ input[type="password"] {
     font-size: 18px;
 }
 
+input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder {
     color: var(--foreground);
@@ -152,6 +154,7 @@ form>p>span {
     font-weight: bold;
     cursor: pointer;
 }
-form>p>span:hover{
+
+form>p>span:hover {
     text-decoration: underline;
 }

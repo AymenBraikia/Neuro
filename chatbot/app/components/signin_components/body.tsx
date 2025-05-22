@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "./body.css";
 import Theme from "../theme";
 import { useRouter } from "next/navigation";
@@ -60,9 +60,9 @@ function Body() {
 				</div>
 				<div className="part2">
 					<h2>Sign In Your Account</h2>
-					<p style={{color:"var(--foreground3)"}}>Continue your journey with our AI assistant</p>
+					<p style={{ color: "var(--foreground3)" }}>Continue your journey with our AI assistant</p>
 
-					<form action="" method="post">
+					<form action="http://localhost:8000/signin" method="POST">
 						<div style={{ position: "relative", width: "100%" }}>
 							<label className="icon" htmlFor="#email">
 								{mail()}
