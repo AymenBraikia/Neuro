@@ -1,8 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 import "./header.css";
 import Theme from "./theme";
 import "./theme.css";
-
 
 import { useRef, useEffect } from "react";
 
@@ -59,8 +59,8 @@ function Logo() {
 	);
 }
 
-function 
-Header() {
+function Header() {
+	const router = useRouter();
 	const scrollProgress = useRef<HTMLDivElement>(null);
 	const header = useRef<HTMLDivElement>(null);
 
@@ -87,7 +87,14 @@ Header() {
 				<div data-n={"Get Started"} className="btn br bgb">
 					Get Started
 				</div>
-				<div className="btn br bgw">Log In</div>
+				<div
+					className="btn br bgw"
+					onClick={() => {
+						router.push("../signup");
+					}}
+				>
+					Log In
+				</div>
 				<Theme />
 			</nav>
 			<div ref={scrollProgress} className="scrollProgress"></div>
