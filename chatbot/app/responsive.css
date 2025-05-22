@@ -42,11 +42,11 @@
     }
 
     .key {
-        width: 30px;
+        width: 32px;
         height: 35px;
     }
 
-    .keyspace{
+    .keyspace {
         width: 150px;
     }
 
@@ -54,7 +54,8 @@
         width: 95% !important;
         overflow-y: hidden;
     }
-    .keyboard{
+
+    .keyboard {
         height: 40%;
     }
 

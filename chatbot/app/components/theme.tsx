@@ -11,12 +11,16 @@ function switchTheme() {
         --background2: #151515;
         --background: #000000;
         --foreground: #ffffff;
+        --foreground2: #fbfbfb;
+        --foreground3: #eee;
         --background-opacity: #00000099;`,
 		lightStyles = `
         --background3: #eee;
         --background2: #fbfbfb;
         --background: #ffffff;
         --foreground: #000000;
+		--foreground2: #171717;
+		--foreground3: #2b2b2b;
         --background-opacity: #ffffff99;`;
 
 	let styles = null;
@@ -56,12 +60,16 @@ function loadTheme() {
         --background2: #fbfbfb;
         --background: #ffffff;
         --foreground: #000000;
+		--foreground2: #171717;
+		--foreground3: #2b2b2b;
         --background-opacity: #ffffff99;`,
 		lightStyles = `
         --background3: #1f1f1f;
         --background2: #151515;
         --background: #000000;
         --foreground: #ffffff;
+        --foreground2: #fbfbfb;
+        --foreground3: #eee;
         --background-opacity: #00000099;`;
 
 	let styles = null;
@@ -171,7 +179,7 @@ function Theme() {
 	}, []);
 
 	return (
-		<div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5,overflow:"hidden" }}>
+		<div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
 			<div onClick={switchTheme}>
 				{Moon()}
 				{Sun()}
