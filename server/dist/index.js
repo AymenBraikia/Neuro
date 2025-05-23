@@ -60,21 +60,28 @@ app.post("/signup", async (req, res) => {
     }
     users.insertOne({ username: info.username, email: info.email, password: info.password });
     res.cookie("username", info.username);
-    res.redirect("http://localhost:3000/");
+    res.redirect(req.headers.origin || "http://localhost:3000/");
 });
 app.post("/signin", async (req, res) => {
     const info = req.body;
-    if (!validate(info)[0]) {
-        res.json(JSON.stringify({ state: false, reason: validate(req.body)[1] }));
+    const validation = validate(info);
+    if (!validation[0]) {
+        res
+            .status(400)
+            .cookie("reason", validation[1], { maxAge: 60 * 1e3 * 5 })
+            .redirect(req.headers.origin + "/error");
         return;
     }
     const data = await (await db).collection("users").findOne({ email: info.email, password: info.password });
     if (!data) {
-        res.json(JSON.stringify({ state: false, reason: "Could not find a user with the given information, Try to create an account if you don't have one" }));
+        res
+            .status(400)
+            .cookie("reason", "Could not find a user with the given information, Try to create an account if you don't have one", { maxAge: 60 * 1e3 * 5 })
+            .redirect(req.headers.origin + "/error");
         return;
     }
     res.cookie("username", data.username);
-    res.redirect("http://localhost:3000/");
+    res.redirect(req.headers.origin || "http://localhost:3000/");
 });
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
