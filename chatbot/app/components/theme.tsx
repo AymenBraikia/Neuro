@@ -163,7 +163,11 @@ function Sun() {
 	);
 }
 
-function Theme() {
+interface prop{
+	visibility:boolean
+}
+
+function Theme(props:prop) {
 	useEffect(() => {
 		const theme = localStorage.getItem("theme"),
 			sun = document.querySelector(".sun") as HTMLElement,
@@ -179,7 +183,7 @@ function Theme() {
 
 	return (
 		// <div style={{ width: 70, height: 70, backgroundColor: "var(--background)", borderRadius: "50%", position: "fixed", right: 50, bottom: 50, cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
-		<div style={{ width: 70, height: 70, backgroundColor: "transparent", borderRadius: "50%",position:"relative", cursor: "pointer", zIndex: 5, overflow: "hidden" }}>
+		<div style={{ width: 70, height: 70, backgroundColor: "transparent", borderRadius: "50%", position: "relative", cursor: "pointer", zIndex: 5, overflow: "hidden", display: props.visibility ? "flex" : "none" }}>
 			<div onClick={switchTheme}>
 				{Moon()}
 				{Sun()}

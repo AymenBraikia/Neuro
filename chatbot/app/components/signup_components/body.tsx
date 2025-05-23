@@ -2,6 +2,8 @@
 import "./body.css";
 import Theme from "../theme";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 function google() {
 	return (
@@ -40,7 +42,22 @@ function lock() {
 }
 
 function Body() {
+	const [settings, setSettings] = useState({ production: null, serverUrl: null, loaded: false });
+
+	useEffect(() => {
+		if (settings.loaded) return;
+		fetch("/settings.json")
+			.then((resp) => resp.json())
+			.then((results) => {
+				setSettings(results);
+			})
+			.catch((err) => console.error("Failed to load settings:", err));
+	}, [settings]);
+
 	const router = useRouter();
+
+	if (!settings.loaded) return <Loading />;
+
 	return (
 		<>
 			<div className="container">
@@ -75,21 +92,21 @@ function Body() {
 							<label className="icon" htmlFor="#email">
 								{mail()}
 							</label>
-							<input type="email" id="email" name="email" className="email" placeholder="Email address" />
+							<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
 						</div>
 
 						<div style={{ position: "relative", width: "100%" }}>
 							<label className="icon" htmlFor="#username">
 								{username()}
 							</label>
-							<input type="text" id="username" name="username" className="username" placeholder="Username" />
+							<input required type="text" id="username" name="username" className="username" placeholder="Username" />
 						</div>
 
 						<div style={{ position: "relative", width: "100%" }}>
 							<label className="icon" htmlFor="#password">
 								{lock()}
 							</label>
-							<input type="password" id="password" name="password" className="password" placeholder="Password" />
+							<input required type="password" id="password" name="password" className="password" placeholder="Password" />
 						</div>
 
 						<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
@@ -98,7 +115,7 @@ function Body() {
 						</div>
 
 						<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
-							<input type="checkbox" name="terms" id="terms" />
+							<input required type="checkbox" name="terms" id="terms" />
 							<label htmlFor="#terms">I agree to the Terms of Service and Privacy Policy</label>
 						</div>
 
@@ -120,7 +137,7 @@ function Body() {
 					</form>
 				</div>
 			</div>
-			<Theme></Theme>
+			<Theme visibility={false}></Theme>
 		</>
 	);
 }

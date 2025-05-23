@@ -1,7 +1,9 @@
 "use client";
 import "./body.css";
 import Theme from "../theme";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Loading from "../loading";
 
 function google() {
 	return (
@@ -32,7 +34,22 @@ function lock() {
 }
 
 function Body() {
+	const [settings, setSettings] = useState({ production: null, serverUrl: null, loaded: false });
+
+	useEffect(() => {
+		if (settings.loaded) return;
+		fetch("/settings.json")
+			.then((resp) => resp.json())
+			.then((results) => {
+					setSettings(results);
+			})
+			.catch((err) => console.error("Failed to load settings:", err));
+	}, [settings]);
+
 	const router = useRouter();
+
+	if (!settings.loaded) return <Loading />;
+
 	return (
 		<>
 			<div className="container">
@@ -62,19 +79,19 @@ function Body() {
 					<h2>Sign In Your Account</h2>
 					<p style={{ color: "var(--foreground3)" }}>Continue your journey with our AI assistant</p>
 
-					<form action="http://localhost:8000/signin" method="POST">
+					<form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST">
 						<div style={{ position: "relative", width: "100%" }}>
 							<label className="icon" htmlFor="#email">
 								{mail()}
 							</label>
-							<input type="email" id="email" name="email" className="email" placeholder="Email address" />
+							<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
 						</div>
 
 						<div style={{ position: "relative", width: "100%" }}>
 							<label className="icon" htmlFor="#password">
 								{lock()}
 							</label>
-							<input type="password" id="password" name="password" className="password" placeholder="Password" />
+							<input required type="password" id="password" name="password" className="password" placeholder="Password" />
 						</div>
 
 						<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
@@ -100,7 +117,7 @@ function Body() {
 					</form>
 				</div>
 			</div>
-			<Theme></Theme>
+			<Theme visibility={false} />
 		</>
 	);
 }

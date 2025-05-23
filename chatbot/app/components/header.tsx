@@ -61,7 +61,7 @@ function Header() {
 					</div>
 				)}
 
-				<Theme />
+				<Theme visibility={true} />
 			</nav>
 
 			<div ref={scrollProgress} className="scrollProgress"></div>
