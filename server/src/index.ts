@@ -48,8 +48,7 @@ app.post("/signup", async (req, res) => {
 		res
 			.status(400)
 			.cookie("reason", validation[1], { maxAge: 60 * 1e3 * 5 })
-			.json({err:"err"});
-			// .redirect(req.headers.origin + "/error");
+			.redirect(req.headers.origin + "/error");
 
 		return;
 	}

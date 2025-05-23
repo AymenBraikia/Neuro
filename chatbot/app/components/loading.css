@@ -3,7 +3,25 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    z-index: 50;
     /* width: 100%; */
+}
+
+.loadContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.loadContainer.active {
+    opacity: 0;
 }
 
 .dot {
@@ -20,12 +38,13 @@
         transform: scale(1);
         box-shadow: 0 0 0px 0 var(--foreground);
     }
-    
+
     0% {
         opacity: 1;
         transform: scale(0.5);
         box-shadow: 0 0 0px 0 var(--foreground);
     }
+
     100% {
         opacity: 0;
         transform: scale(2);

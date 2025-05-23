@@ -41,83 +41,90 @@ function Body() {
 		fetch("/settings.json")
 			.then((resp) => resp.json())
 			.then((results) => {
-					setSettings(results);
+				setSettings(results);
+				setTimeout(() => document.querySelector(".loadContainer")?.classList.add("active"), 100);
 			})
 			.catch((err) => console.error("Failed to load settings:", err));
 	}, [settings]);
 
 	const router = useRouter();
 
-	if (!settings.loaded) return <Loading />;
-
 	return (
 		<>
-			<div className="container">
-				<div className="part1">
-					<h1 className="title">Experience AI at its finest</h1>
-					<p>Join thousands of users leveraging our advanced AI chatbot for solving their everyday problems.</p>
-					<ul>
-						<li>
-							<div className="subTitle">Natural Conversations</div>
-							<div className="subText">Our AI understands context and provides human-like responses.</div>
-						</li>
-						<li>
-							<div className="subTitle">Personalized Experience</div>
-							<div className="subText">The more you chat, the better it understands your preferences.</div>
-						</li>
-						<li>
-							<div className="subTitle">Available 24/7</div>
-							<div className="subText">Get instant answers whenever you need them, day or night.</div>
-						</li>
-						<li>
-							<div className="subTitle">Secure & Private</div>
-							<div className="subText">Your conversations are encrypted and never shared with third parties.</div>
-						</li>
-					</ul>
-				</div>
-				<div className="part2">
-					<h2>Sign In Your Account</h2>
-					<p style={{ color: "var(--foreground3)" }}>Continue your journey with our AI assistant</p>
-
-					<form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST">
-						<div style={{ position: "relative", width: "100%" }}>
-							<label className="icon" htmlFor="#email">
-								{mail()}
-							</label>
-							<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
-						</div>
-
-						<div style={{ position: "relative", width: "100%" }}>
-							<label className="icon" htmlFor="#password">
-								{lock()}
-							</label>
-							<input required type="password" id="password" name="password" className="password" placeholder="Password" />
-						</div>
-
-						<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
-							<input type="checkbox" name="remember" id="remember" />
-							<label htmlFor="#remember">Remember me</label>
-						</div>
-
-						<input type="submit" value="Sign In" />
-
-						<p>or continue with</p>
-
-						<div className="continue">{google()} Continue with Google</div>
-						<p>
-							Don&apos;t have an account?{" "}
-							<span
-								onClick={() => {
-									router.push("../signup");
-								}}
-							>
-								Sign up
-							</span>
-						</p>
-					</form>
-				</div>
-			</div>
 			<Theme visibility={false} />
+			{Loading()}
+
+			<div className="container">
+				{settings.loaded ? (
+					<>
+						<div className="part1">
+							<h1 className="title">Experience AI at its finest</h1>
+							<p>Join thousands of users leveraging our advanced AI chatbot for solving their everyday problems.</p>
+							<ul>
+								<li>
+									<div className="subTitle">Natural Conversations</div>
+									<div className="subText">Our AI understands context and provides human-like responses.</div>
+								</li>
+								<li>
+									<div className="subTitle">Personalized Experience</div>
+									<div className="subText">The more you chat, the better it understands your preferences.</div>
+								</li>
+								<li>
+									<div className="subTitle">Available 24/7</div>
+									<div className="subText">Get instant answers whenever you need them, day or night.</div>
+								</li>
+								<li>
+									<div className="subTitle">Secure & Private</div>
+									<div className="subText">Your conversations are encrypted and never shared with third parties.</div>
+								</li>
+							</ul>
+						</div>
+						<div className="part2">
+							<h2>Sign In Your Account</h2>
+							<p style={{ color: "var(--foreground3)" }}>Continue your journey with our AI assistant</p>
+
+							<form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST">
+								<div style={{ position: "relative", width: "100%" }}>
+									<label className="icon" htmlFor="#email">
+										{mail()}
+									</label>
+									<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
+								</div>
+
+								<div style={{ position: "relative", width: "100%" }}>
+									<label className="icon" htmlFor="#password">
+										{lock()}
+									</label>
+									<input required type="password" id="password" name="password" className="password" placeholder="Password" />
+								</div>
+
+								<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
+									<input type="checkbox" name="remember" id="remember" />
+									<label htmlFor="#remember">Remember me</label>
+								</div>
+
+								<input type="submit" value="Sign In" />
+
+								<p>or continue with</p>
+
+								<div className="continue">{google()} Continue with Google</div>
+								<p>
+									Don&apos;t have an account?{" "}
+									<span
+										onClick={() => {
+											router.push("../signup");
+										}}
+									>
+										Sign up
+									</span>
+								</p>
+							</form>
+						</div>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
 		</>
 	);
 }
