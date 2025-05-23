@@ -1,11 +1,10 @@
 "use client";
 import "./body.css";
-import "../signingRepsonsive.css"
+import "../signingRepsonsive.css";
 import Theme from "../theme";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../loading";
-
 
 function google() {
 	return (
@@ -92,7 +91,7 @@ function Body() {
 							<h2>Create Your Account</h2>
 							<p style={{ color: "var(--foreground3)" }}>Start your journey with our AI assistant</p>
 
-							<form action="http://localhost:8000/signup" method="POST">
+							<form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST">
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#email">
 										{mail()}

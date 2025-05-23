@@ -13,40 +13,49 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
+app.use(express_1.default.static("../public"));
 const port = 8000;
 app.get("/", (req, res) => {
     res.send("Hello TypeScript with Express!");
 });
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 function validate(obj) {
-    if (!emailRegex.test(obj.email))
+    if (!obj.email || !obj.password)
+        return [false, "Bad Request"];
+    const passwordTest = passwordRegex.test(obj.password);
+    const email = emailRegex.test(obj.email);
+    if (!email)
         return [false, "Email is not in the correct format"];
-    if (!passwordRegex.test(obj.password))
-        return [
-            false,
-            `Password is not in the correct format:
--At least 8 characters
--At least one uppercase letter
--At least one lowercase letter
--At least one digit
--At least one special character`,
-        ];
+    if (!passwordTest)
+        return [false, `Password is not in the correct format:, At least 8 characters, At least one uppercase letter, At least one lowercase letter, At least one digit, At least one special character`];
     return [true];
 }
 app.post("/signup", async (req, res) => {
     const info = req.body;
-    if (!validate(info)[0]) {
-        res.json(JSON.stringify({ state: false, reason: validate(req.body)[1] }));
+    const validation = validate(info);
+    if (!validation[0]) {
+        res
+            .status(400)
+            .cookie("reason", validation[1], { maxAge: 60 * 1e3 * 5 })
+            .redirect(req.headers.origin + "/error");
         return;
     }
     const users = (await db).collection("users");
     if (await users.findOne({ email: info.email })) {
-        res.json({ state: false, reason: "This email is taken use another one" });
+        // res.json({ state: false, reason: "This email is taken use another one" });
+        res
+            .status(400)
+            .cookie("reason", "This email is taken use another one.", { maxAge: 60 * 1e3 * 5 })
+            .redirect(req.headers.origin + "/error");
         return;
     }
-    else if (await users.findOne({ email: info.email })) {
-        res.json({ state: false, reason: "This username is taken use another one" });
+    else if (await users.findOne({ username: info.username })) {
+        // res.status(400).cookie("reason", "This username is taken use another one.").redirect(req.headers.origin + "/error");
+        res
+            .status(400)
+            .cookie("reason", "This username is taken use another one.", { maxAge: 60 * 1e3 * 5 })
+            .redirect(req.headers.origin + "/error");
         return;
     }
     users.insertOne({ username: info.username, email: info.email, password: info.password });
