@@ -12,6 +12,9 @@
     .container>*>*{
         min-width: 90vw;
     }
+    ul{
+        min-width: 80vw !important;
+    }
     form{
         row-gap: 20px;
     }
