@@ -1,0 +1,27 @@
+@media (max-width: 370px) {
+    .container {
+        flex-direction: column-reverse;
+        height: fit-content;
+    }
+
+    .container>* {
+        width: 100%;
+        height: fit-content;
+        min-height: 100vh;
+    }
+    .container>*>*{
+        min-width: 90vw;
+    }
+    form{
+        row-gap: 20px;
+    }
+    form>*{
+        min-width: 90vw;
+    }
+    .part2{
+        padding-top: 30px;
+    }
+
+}
+
+@media (max-width: 600px) and (min-width:371px) {}

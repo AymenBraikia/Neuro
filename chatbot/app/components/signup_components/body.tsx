@@ -1,9 +1,11 @@
 "use client";
 import "./body.css";
+import "../signingRepsonsive.css"
 import Theme from "../theme";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../loading";
+
 
 function google() {
 	return (
