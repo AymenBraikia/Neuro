@@ -58,7 +58,7 @@ function Body() {
 
 	return (
 		<>
-			{Loading()}
+			{Loading(settings.loaded)}
 			<Theme visibility={false}></Theme>
 
 			<div className="container">

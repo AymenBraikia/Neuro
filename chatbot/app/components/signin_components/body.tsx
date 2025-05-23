@@ -52,7 +52,7 @@ function Body() {
 	return (
 		<>
 			<Theme visibility={false} />
-			{Loading()}
+			{Loading(settings.loaded)}
 
 			<div className="container">
 				{settings.loaded ? (
