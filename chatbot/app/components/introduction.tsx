@@ -1,29 +1,21 @@
 "use client";
 import "./introduction.css";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-let counter = 0;
 
 function Introduction() {
 	const router = useRouter();
 
-	const ref = useRef<HTMLDivElement>(null);
 	useEffect(() => {
-		const intervalId = setInterval(() => {
-			if (counter > 3) counter = 0;
-			else counter++;
-
-			if (ref.current) ref.current.style.top = 4 - 50 * counter + "px";
-		}, 1500);
-
-		return () => clearInterval(intervalId);
+		document.querySelectorAll(".shadowAnimation").forEach((el) => {
+			el.classList.add("active");
+		});
 	}, []);
 
 	return (
 		<>
-			<h1 className="welcomeMessage">Research Powered By AI</h1>
-			<p className="mrt50" style={{ fontSize: 22, fontWeight: 400, width: "720px", textAlign: "center" }}>
+			<h1 className="welcomeMessage shadowAnimation">Research Powered By AI</h1>
+			<p className="mrt50 shadowAnimation" style={{ fontSize: 22, fontWeight: 400, width: "720px", textAlign: "center",position:"relative" }}>
 				Get comprehensive, accurate research in seconds. Our AI assistant helps you <span style={{ textDecoration: "underline" }}>find, analyze, and summarize</span> information from across the web.
 			</p>
 			<div className="mrt100" style={{ display: "flex", justifyContent: "center", alignItems: "center", columnGap: 50 }}>
@@ -34,7 +26,7 @@ function Introduction() {
 					data-n={"GET STARTED"}
 					className="btn bgw br bold"
 					style={{ border: "unset", boxShadow: "0px 4px 10px -7px var(--foreground)", padding: "13px 23px" }}
-					>
+				>
 					GET STARTED
 				</div>
 				<div

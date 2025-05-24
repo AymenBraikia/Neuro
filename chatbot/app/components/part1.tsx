@@ -73,7 +73,7 @@ function Part1() {
 	}, []);
 
 	return (
-		<div ref={container} className="part1 mrt200">
+		<div ref={container} className="part1">
 			<h1 style={{ fontSize: 50 }}>How does it work?</h1>
 			<p style={{ width: 570, fontSize: 18, textAlign: "center" }}>Our platform simplifies complex research tasks using advanced AI technology. Follow these steps to get started.</p>
 			<div className="steps">

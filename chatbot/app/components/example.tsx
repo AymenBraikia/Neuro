@@ -49,7 +49,7 @@ function phone() {
 
 function Example() {
 	return (
-		<div className="mrt50" style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", height: "800px" }}>
+		<div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", height: "800px" }}>
 			<div className="phoneContainer">{phone()}</div>
 			<div className="bold" style={{ fontSize: 40, width: "45%", textAlign: "center" }}>
 				Save time and get more done with our intelligent chatbot.
