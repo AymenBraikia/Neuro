@@ -9,6 +9,8 @@
         min-width: fit-content;
         max-width: 50vw;
         right: 0;
+        align-items: center;
+        justify-content: center;
     }
 
     .navbar>* {
@@ -29,7 +31,8 @@
         font-size: 18px !important;
     }
 
-    div.mrt50 {
+    .example {
+
         flex-direction: column;
         margin: unset;
         justify-content: flex-start !important;
@@ -62,7 +65,7 @@
         height: 40%;
     }
 
-    div.mrt50>div.bold {
+    .example>div.bold {
         width: 90% !important;
         font-size: 33px !important;
     }
@@ -92,7 +95,7 @@
         padding-top: 150px;
     }
 
-    div.mrt150>h1,
+    .part2>h1,
     .part1>h1 {
         text-align: center;
         font-size: 30px !important;
@@ -115,7 +118,7 @@
         max-width: unset;
     }
 
-    div.mrt150>p {
+    .part2>p {
         max-width: 90vw;
     }
 
@@ -145,6 +148,8 @@
         min-width: fit-content;
         max-width: 50vw;
         right: 0;
+        align-items: center;
+        justify-content: center;
     }
 
     .navbar>* {
@@ -160,11 +165,13 @@
     }
 
     p.mrt50 {
+
         max-width: 90%;
         font-size: 18px !important;
     }
 
-    div.mrt50 {
+    .example {
+
         flex-direction: column;
         margin: unset;
         justify-content: flex-start !important;
@@ -181,7 +188,7 @@
         overflow-y: hidden;
     }
 
-    div.mrt50>div.bold {
+    .example>div.bold {
         width: 90% !important;
         font-size: 33px !important;
     }
@@ -206,7 +213,7 @@
         padding-top: 150px;
     }
 
-    div.mrt150>h1,
+    .part2>h1,
     .part1>h1 {
         text-align: center;
         font-size: 35px !important;
@@ -227,7 +234,7 @@
         max-width: unset;
     }
 
-    div.mrt150>p {
+    .part2>p {
         max-width: 90vw;
     }
 

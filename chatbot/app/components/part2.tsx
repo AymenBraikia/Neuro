@@ -78,7 +78,7 @@ function Part2() {
 	}, []);
 
 	return (
-		<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "column", position: "relative", rowGap: 50 }}>
+		<div className="part2" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: "column", position: "relative", rowGap: 50 }}>
 			<h1 style={{ fontSize: 50 }}>Why Choose Neuro?</h1>
 			<p style={{ fontSize: 20, width: 650, textAlign: "center" }}>Our AI assistant is designed to make your life easier and more productive.</p>
 			<div className="reasons">

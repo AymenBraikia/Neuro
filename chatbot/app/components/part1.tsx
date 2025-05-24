@@ -58,16 +58,18 @@ function Part1() {
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (!step1.current || !container.current || !step2.current || !step3.current || !step4.current) return;
-			if (scrollY >= 1572) {
+			if (step1.current.getClientRects()[0].y < screen.availHeight - 200) {
 				step1.current.classList.add("active");
-				step2.current.classList.add("active");
-				step3.current.classList.add("active");
-				step4.current.classList.add("active");
+				let i = 1;
+				setTimeout(() => step2.current?.classList.add("active"), i++ * 300);
+				setTimeout(() => step3.current?.classList.add("active"), i++ * 300);
+				setTimeout(() => step4.current?.classList.add("active"), i++ * 300);
 			} else {
 				step1.current.classList.remove("active");
-				step2.current.classList.remove("active");
-				step3.current.classList.remove("active");
-				step4.current.classList.remove("active");
+				let i = 1;
+				setTimeout(() => step2.current?.classList.remove("active"), i++ * 300);
+				setTimeout(() => step3.current?.classList.remove("active"), i++ * 300);
+				setTimeout(() => step4.current?.classList.remove("active"), i++ * 300);
 			}
 		});
 	}, []);

@@ -1,7 +1,6 @@
 "use client";
 import Theme from "../theme";
 
-
 function gear() {
 	return (
 		<svg width="25" height="25" viewBox="0 0 24 24" fill="none">
@@ -121,7 +120,6 @@ function code() {
 	);
 }
 
-// import search from "../../../public/search-svgrepo-com (1).svg";
 import "./body.css";
 import { useRef, useEffect } from "react";
 
@@ -234,7 +232,6 @@ function renderChatHistory(history: string | null) {
 		</>
 	);
 }
-
 function handleOptionClick(ev: React.MouseEvent<HTMLParagraphElement>) {
 	const target = ev.currentTarget as HTMLElement;
 	target.classList.toggle("active");
@@ -308,7 +305,9 @@ function Body() {
 	const messages: Array<object> = [];
 
 	async function Submit() {
-		if (!input.current?.value || !input.current) return;
+		if (!input.current?.value) return;
+		if (input.current?.value == "") return;
+
 		if (document.querySelector("h1")) {
 			h1.current?.classList.add("active");
 
@@ -422,18 +421,17 @@ function Body() {
 	return (
 		<>
 			<nav>
-				<div style={{ display: "flex", justifyContent: "flex-start", columnGap: 20, alignItems: "center", minWidth: 160, width: "100%", height: "10%" }}>
+				<div className="navHeader" style={{ display: "flex", justifyContent: "flex-start", columnGap: 20, alignItems: "center", minWidth: 160, width: "100%", height: "10%" }}>
 					{menu()}
-					{/* <Image src={burger} alt="Burger" onClick={navBarToggle} className="burger" /> */}
-					<div style={{ position: "relative", width: "70%" }}>
+					<div className="searchCont" style={{ position: "relative", width: "70%" }}>
 						{search()}
 						<input type="text" className="search_history" placeholder="Search" id="" />
 					</div>
 				</div>
+
 				<div>
 					<div className="newChat">
 						{canvasPen()}
-						{/* <Image src={pen} alt="New chat" width={30} height={30} title="New chat" /> */}
 						<h3>New chat</h3>
 					</div>
 				</div>
@@ -444,7 +442,6 @@ function Body() {
 				<div>
 					<div className="settings_help" style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
 						{gear()}
-						{/* <Image src={gear} alt="Settings" width={25} height={25} /> */}
 						<p style={{ fontSize: 18 }}>Settings And Help</p>
 					</div>
 				</div>
@@ -457,40 +454,34 @@ function Body() {
 						</h1>
 					</div>
 				</div>
-				<div style={{ height: 100, width: "80%", background: "var(--background3)", position: "relative", left: "10%", borderRadius: 15 }}>
+				<div className="inputContainer" style={{ height: 100, width: "80%", background: "var(--background3)", position: "relative", left: "10%", borderRadius: 15 }}>
 					<input ref={input} style={{ width: "100%", padding: 15, fontSize: 18, background: "transparent", outline: "none", border: "none", color: "var(--foreground)" }} type="text" placeholder="Ask Neuro" />
 					<div className="options">
 						<p onClick={handleAttachmentClick} style={{ height: 40, width: 40, fontWeight: 200, fontFamily: "sans-serif", fontSize: 25, display: "flex", justifyContent: "center", alignItems: "center" }}>
 							+
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{web()}
-							{/* <Image src={web} width={25} height={25} alt="web" /> */}
 							Search
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{database()}
-							{/* <Image src={database} width={20} height={20} alt="web" /> */}
 							Deep Search
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{save()}
-							{/* <Image src={save} width={30} height={30} alt="web" /> */}
 							Reason
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{image()}
-							{/* <Image src={image} width={20} height={20} alt="web" /> */}
 							Create image
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{canvasPen()}
-							{/* <Image src={canvasPen} width={25} height={25} alt="web" /> */}
 							Canvas
 						</p>
-						<p onClick={handleOptionClick}>
+						<p className="option" onClick={handleOptionClick}>
 							{code()}
-							{/* <Image src={code} width={25} height={25} alt="web" /> */}
 							Code
 						</p>
 					</div>

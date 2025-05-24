@@ -1,5 +1,6 @@
 import Image from "next/image";
 import userPfp from "../../../public/profile-1335-svgrepo-com.svg";
+import "./responsive.css"
 
 const headerStyles: object = {
 	backgroundColor: "var(--background-opacity)",
