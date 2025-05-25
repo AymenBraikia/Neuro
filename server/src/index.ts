@@ -8,7 +8,12 @@ const db = (async () => {
 
 const app = express();
 
-app.use(cors());
+app.use(
+	cors({
+		origin: (origin, callback) => callback(null, true),
+		credentials: true,
+	})
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -104,8 +109,7 @@ app.post("/signin", async (req, res) => {
 		return;
 	}
 
-
-	res.cookie("username", data.username,{httpOnly:true,secure:true,sameSite:"none"}).redirect(req.headers.origin || "http://localhost:3000/");
+	res.cookie("username", data.username, { httpOnly: true, secure: true, sameSite: "none" }).redirect(req.headers.origin || "http://localhost:3000/");
 });
 
 app.listen(port, () => {
