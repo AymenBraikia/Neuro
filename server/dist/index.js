@@ -83,6 +83,7 @@ app.post("/signin", async (req, res) => {
             .redirect(req.headers.origin + "/error");
         return;
     }
+    console.log(data.username);
     res
         .cookie("username", data.username)
         .redirect(req.headers.origin || "http://localhost:3000/");
