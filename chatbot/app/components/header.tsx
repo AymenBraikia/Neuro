@@ -81,7 +81,7 @@ function Header() {
 							Sign Out
 						</div>
 						<div className="profile">
-							<h3 className="username">{username}</h3>
+							<h3 className="profileUsername">{username}</h3>
 							<Pfp />
 						</div>
 					</>
