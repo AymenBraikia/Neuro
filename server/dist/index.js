@@ -10,7 +10,10 @@ const db = (async () => {
     return (await (0, db_1.default)()).db("Neuro");
 })();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: (origin, callback) => callback(null, true),
+    credentials: true,
+}));
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use(express_1.default.static("../public"));
@@ -83,8 +86,7 @@ app.post("/signin", async (req, res) => {
             .redirect(req.headers.origin + "/error");
         return;
     }
-    res.cookie("test", "true");
-    res.cookie("username", data.username).redirect(req.headers.origin || "http://localhost:3000/");
+    res.cookie("username", data.username, { httpOnly: true, secure: true, sameSite: "none" }).send(`<script>window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
