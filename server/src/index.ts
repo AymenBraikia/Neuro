@@ -70,7 +70,7 @@ app.post("/signup", async (req, res) => {
 
 	users.insertOne({ username: info.username, email: info.email, password: info.password });
 
-	res.send(`<script>document.cookie = 'username'= ${info.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	res.send(`<script>document.cookie = 'username = ${info.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 
 app.post("/signin", async (req, res) => {
@@ -89,7 +89,7 @@ app.post("/signin", async (req, res) => {
 		return;
 	}
 
-	res.send(`<script>document.cookie = 'username'= ${data.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	res.send(`<script>document.cookie = 'username = ${data.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 
 app.listen(port, () => {
