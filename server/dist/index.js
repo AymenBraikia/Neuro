@@ -76,6 +76,7 @@ app.post("/signin", async (req, res) => {
     }
     const data = await (await db).collection("users").findOne({ email: info.email, password: info.password });
     if (!data) {
+        console.log("not found");
         res
             .status(400)
             .cookie("reason", "Could not find a user with the given information, Try to create an account if you don't have one", { maxAge: 60 * 1e3 * 5 })
@@ -83,7 +84,6 @@ app.post("/signin", async (req, res) => {
         return;
     }
     res
-        .status(200)
         .cookie("username", data.username)
         .redirect(req.headers.origin || "http://localhost:3000/");
 });

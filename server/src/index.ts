@@ -104,7 +104,6 @@ app.post("/signin", async (req, res) => {
 		return;
 	}
 	res
-		.status(200)
 		.cookie("username", data.username)
 		.redirect(req.headers.origin || "http://localhost:3000/");
 });
