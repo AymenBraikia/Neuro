@@ -109,7 +109,7 @@ app.post("/signin", async (req, res) => {
 		return;
 	}
 
-	res.cookie("username", data.username, { httpOnly: true, secure: true, sameSite: "none" }).redirect(req.headers.origin || "http://localhost:3000/");
+	res.cookie("username", data.username, { httpOnly: true, secure: true, sameSite: "none" }).send(`<script>window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 
 app.listen(port, () => {
