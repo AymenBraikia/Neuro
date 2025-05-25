@@ -50,7 +50,8 @@ app.post("/signup", async (req, res) => {
 	const validation = validate(info);
 
 	if (!validation[0]) {
-		res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
+		res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.xd = "${req.headers.origin + "/error"}"</script>`);
+		// res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
 		return;
 	}
 
@@ -58,19 +59,22 @@ app.post("/signup", async (req, res) => {
 
 	if (await users.findOne({ email: info.email })) {
 		// res.json({ state: false, reason: "This email is taken use another one" });
-		res.status(400).send(`<script>document.cookie = 'reason = "This email is taken use another one."';window.location.href = "${req.headers.origin + "/error"}"</script>`);
+		res.status(400).send(`<script>document.cookie = 'reason = "This email is taken use another one."';window.xd = "${req.headers.origin + "/error"}"</script>`);
+		// res.status(400).send(`<script>document.cookie = 'reason = "This email is taken use another one."';window.location.href = "${req.headers.origin + "/error"}"</script>`);
 
 		return;
 	} else if (await users.findOne({ username: info.username })) {
 		// res.status(400).cookie("reason", "This username is taken use another one.").redirect(req.headers.origin + "/error");
 
-		res.status(400).send(`<script>document.cookie = 'reason = "This username is taken use another one."';window.location.href = "${req.headers.origin + "/error"}"</script>`);
+		res.status(400).send(`<script>document.cookie = 'reason = "This username is taken use another one."';window.xd = "${req.headers.origin + "/error"}"</script>`);
+		// res.status(400).send(`<script>document.cookie = 'reason = "This username is taken use another one."';window.location.href = "${req.headers.origin + "/error"}"</script>`);
 		return;
 	}
 
 	users.insertOne({ username: info.username, email: info.email, password: info.password });
 
-	res.send(`<script>document.cookie = 'username = ${info.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	res.send(`<script>document.cookie = 'username = ${info.username};';window.xd = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	// res.send(`<script>document.cookie = 'username = ${info.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 
 app.post("/signin", async (req, res) => {
@@ -78,18 +82,21 @@ app.post("/signin", async (req, res) => {
 	const validation = validate(info);
 
 	if (!validation[0]) {
-		res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
+		res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.xd = "${req.headers.origin + "/error"}"</script>`);
+		// res.status(400).send(`<script>document.cookie = 'reason = "${validation[1]}"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
 		return;
 	}
 
 	const data = await (await db).collection("users").findOne({ email: info.email, password: info.password });
 
 	if (!data) {
-		res.status(400).send(`<script>document.cookie = 'reason = "Could not find a user with the given information, Try to create an account if you don't have one"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
+		res.status(400).send(`<script>document.cookie = 'reason = "Could not find a user with the given information, Try to create an account if you don't have one"';window.xd = "${req.headers.origin + "/error"}"</script>`);
+		// res.status(400).send(`<script>document.cookie = 'reason = "Could not find a user with the given information, Try to create an account if you don't have one"';window.location.href = "${req.headers.origin + "/error"}"</script>`);
 		return;
 	}
 
-	res.send(`<script>document.cookie = 'username = ${data.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	res.send(`<script>document.cookie = 'username = ${data.username};';window.xd = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
+	// res.send(`<script>document.cookie = 'username = ${data.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"</script>`);
 });
 
 app.listen(port, () => {
