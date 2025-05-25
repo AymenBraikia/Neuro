@@ -3,8 +3,18 @@ import "./body.css";
 import "../signingRepsonsive.css";
 import Theme from "../theme";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loading from "../loading";
+
+function errIcon() {
+	return (
+		<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-alert h-8 w-8 text-red-500">
+			<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+			<path d="M12 8v4"></path>
+			<path d="M12 16h.01"></path>
+		</svg>
+	);
+}
 
 function google() {
 	return (
@@ -24,7 +34,7 @@ function mail() {
 		</svg>
 	);
 }
-function username() {
+function usernameIcon() {
 	return (
 		<svg width={18} height={18} viewBox="0 0 24 24" fill="none">
 			<path d="M12 1C8.96243 1 6.5 3.46243 6.5 6.5C6.5 9.53757 8.96243 12 12 12C15.0376 12 17.5 9.53757 17.5 6.5C17.5 3.46243 15.0376 1 12 1Z" fill="currentColor" />
@@ -42,7 +52,49 @@ function lock() {
 	);
 }
 
+function err(reason: string) {
+	console.log(reason);
+	const el = document.querySelector(".alert p");
+	if (!el) return;
+	el.innerHTML = reason;
+	document.querySelector(".alert")?.classList.add("active");
+	setTimeout(() => document.querySelector(".alert")?.classList.remove("active"), 4000);
+}
+
 function Body() {
+	const form = useRef<HTMLFormElement>(null);
+	const emailInp = useRef<HTMLInputElement>(null);
+	const usernameInp = useRef<HTMLInputElement>(null);
+	const passwordInp = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		form.current?.addEventListener("submit", (ev) => {
+			ev.preventDefault();
+
+			fetch(settings.production ? settings.serverUrl + "/signup" : "http://localhost:8000/signup", {
+				method: "post",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: emailInp.current?.value,
+					password: passwordInp.current?.value,
+					username: usernameInp.current?.value,
+				}),
+			})
+				.then((resp) => {
+					return resp.json();
+				})
+				.then((data) => {
+					const result = JSON.parse(data);
+
+					if (result.cookie) document.cookie = `${result.cookie.name} = ${result.cookie.val};`;
+
+					if (result.url) location.href = result.url;
+
+					if (result.reason) err(result.reason);
+				});
+		});
+	});
+
 	const [settings, setSettings] = useState({ production: null, serverUrl: null, loaded: false });
 
 	useEffect(() => {
@@ -91,26 +143,26 @@ function Body() {
 							<h2>Create Your Account</h2>
 							<p style={{ color: "var(--foreground3)" }}>Start your journey with our AI assistant</p>
 
-							<form action={settings.production ? settings.serverUrl + "/signup" : "http://localhost:8000/signin"} method="POST">
+							<form ref={form} action={settings.production ? settings.serverUrl + "/signup" : "http://localhost:8000/signin"} method="POST">
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#email">
 										{mail()}
 									</label>
-									<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
+									<input ref={emailInp} required type="email" id="email" name="email" className="email" placeholder="Email address" />
 								</div>
 
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#username">
-										{username()}
+										{usernameIcon()}
 									</label>
-									<input required type="text" id="username" name="username" className="username" placeholder="Username" />
+									<input ref={usernameInp} required type="text" id="username" name="username" className="username" placeholder="Username" />
 								</div>
 
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#password">
 										{lock()}
 									</label>
-									<input required type="password" id="password" name="password" className="password" placeholder="Password" />
+									<input ref={passwordInp} required type="password" id="password" name="password" className="password" placeholder="Password" />
 								</div>
 
 								<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
@@ -139,6 +191,10 @@ function Body() {
 									</span>
 								</p>
 							</form>
+						</div>
+						<div className="alert">
+							{errIcon()}
+							<p></p>
 						</div>
 					</>
 				) : (

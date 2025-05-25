@@ -39,7 +39,11 @@ function validate(obj: userInfo) {
 	const email = emailRegex.test(obj.email);
 
 	if (!email) return [false, "Email is not in the correct format"];
-	if (!passwordTest) return [false, `Password is not in the correct format:, At least 8 characters, At least one uppercase letter, At least one lowercase letter, At least one digit, At least one special character`];
+	if (!passwordTest)
+		return [
+			false,
+			`<span style='font-weight:bold'>Password is not in the correct format:</span><br> At least 8 characters<br> At least one uppercase letter<br> At least one lowercase letter<br> At least one digit<br> At least one special character`,
+		];
 
 	return [true];
 }
@@ -78,8 +82,12 @@ app.post("/signup", async (req, res) => {
 
 	users.insertOne({ username: info.username, email: info.email, password: info.password });
 
-	res.send(`document.cookie = 'username = ${info.username};';window.xd = "${req.headers.origin || "http://localhost:3000/"}"`);
-	// res.send(`document.cookie = 'username = ${info.username};';window.location.href = "${req.headers.origin || "http://localhost:3000/"}"`);
+	res.json(
+		JSON.stringify({
+			cookie: { name: "username", val: info.username },
+			url: req.headers.origin || "http://localhost:3000/",
+		})
+	);
 });
 
 app.post("/signin", async (req, res) => {
@@ -101,7 +109,6 @@ app.post("/signin", async (req, res) => {
 		res.status(400).json(
 			JSON.stringify({
 				reason: "Could not find a user with the given information, Try to create an account if you don't have one",
-				url: req.headers.origin || "http://localhost:3000/",
 			})
 		);
 		return;

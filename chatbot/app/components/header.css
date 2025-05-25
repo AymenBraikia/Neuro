@@ -32,8 +32,8 @@ header.active {
 
 .navbar {
     height: 100%;
-    min-width: 600px;
-    max-width: 900px;
+    min-width: 700px;
+    max-width: 1000px;
 
     display: flex;
     justify-content: space-between;
@@ -184,4 +184,11 @@ header.active {
     align-items: center;
     gap: 15px;
     /* cursor: pointer; */
+}
+
+.username {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
 }

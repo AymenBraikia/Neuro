@@ -158,3 +158,36 @@ form>p>span {
 form>p>span:hover {
     text-decoration: underline;
 }
+
+
+.alert {
+    z-index: 50;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: fit-content;
+    height: fit-content;
+    min-width: 300px;
+    min-height: 60px;
+    max-width: 500px;
+    background-color: #18070a;
+    border: 1px solid #a80000;
+    border-radius: 5px;
+    color: #ef4444;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 20px;
+    padding: 10px;
+    transform: translateX(100%);
+    transition: transform var(--transition);
+}
+
+.alert.active {
+    transform: translateX(-20px);
+}
+
+.alert p {
+    max-width: calc(100% - 70px);
+}
