@@ -2,7 +2,7 @@
 import "./body.css";
 import "../signingRepsonsive.css";
 import Theme from "../theme";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "../loading";
 
@@ -35,6 +35,31 @@ function lock() {
 }
 
 function Body() {
+	const form = useRef<HTMLFormElement>(null);
+	const emailInp = useRef<HTMLInputElement>(null);
+	const passwordInp = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		form.current?.addEventListener("submit", (ev) => {
+			ev.preventDefault();
+
+			fetch(settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin", {
+				method: "post",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: emailInp.current?.value,
+					password: passwordInp.current?.value,
+				}),
+			})
+				.then((resp) => {
+					return resp.json();
+				})
+				.then((data) => {
+					console.log(data);
+				});
+		});
+	});
+
 	const [settings, setSettings] = useState({ production: null, serverUrl: null, loaded: false });
 
 	useEffect(() => {
@@ -84,19 +109,20 @@ function Body() {
 							<h2>Sign In Your Account</h2>
 							<p style={{ color: "var(--foreground3)" }}>Continue your journey with our AI assistant</p>
 
-							<form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST">
+							{/* <form action={settings.production ? settings.serverUrl + "/signin" : "http://localhost:8000/signin"} method="POST"> */}
+							<form ref={form}>
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#email">
 										{mail()}
 									</label>
-									<input required type="email" id="email" name="email" className="email" placeholder="Email address" />
+									<input ref={emailInp} required type="email" id="email" name="email" className="email" placeholder="Email address" />
 								</div>
 
 								<div style={{ position: "relative", width: "100%" }}>
 									<label className="icon" htmlFor="#password">
 										{lock()}
 									</label>
-									<input required type="password" id="password" name="password" className="password" placeholder="Password" />
+									<input ref={passwordInp} required type="password" id="password" name="password" className="password" placeholder="Password" />
 								</div>
 
 								<div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
