@@ -1,0 +1,55 @@
+.pricing {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+    scroll-margin-top: 100px;
+
+}
+
+.pricing>* {
+    width: 30%;
+    height: 600px;
+    background-color: var(--background2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--background3);
+    border-radius: 50px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.pricing>*:hover {
+    background-color: var(--background3);
+    transform: scale(1.1);
+}
+
+.price {
+    font-size: 35px;
+}
+
+.benefits {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.benefits>* {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+}
+
+.benefits p {
+    width: calc(100% - 30px);
+}

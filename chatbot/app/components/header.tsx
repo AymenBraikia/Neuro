@@ -5,12 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import "./header.css";
 import "./theme.css";
 import Theme from "./theme";
-
-
-
-
-
-
+import Link from "next/link";
 
 function getCookie(name: string): string | null {
 	const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
@@ -47,8 +42,15 @@ function Header() {
 			<h1 style={{ position: "relative", left: "10%" }}>Neuro</h1>
 
 			<nav className="navbar">
-				<div className="section">Contact</div>
-				<div className="section">Pricing</div>
+				<div
+					onClick={() => {
+						open("https://mail.google.com/mail/?view=cm&fs=1&to=contact@neuro.com");
+					}}
+					className="section"
+				>
+					Contact
+				</div>
+				<Link href={"#pricing"} className="section">Pricing</Link>
 				<div className="section">About Us</div>
 
 				{!username ? (
