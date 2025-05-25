@@ -90,7 +90,6 @@ app.post("/signin", async (req, res) => {
 		res.status(400).json(
 			JSON.stringify({
 				reason: validation[1],
-				url: req.headers.origin + "/error",
 			})
 		);
 		return;

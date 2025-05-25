@@ -55,7 +55,8 @@ function Body() {
 					return resp.json();
 				})
 				.then((data) => {
-					console.log(data);
+					const result = JSON.parse(data);
+					console.log(result);
 				});
 		});
 	});
