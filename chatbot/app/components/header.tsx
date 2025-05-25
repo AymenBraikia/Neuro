@@ -11,6 +11,9 @@ function getCookie(name: string): string | null {
 	const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
 	return match ? match[2] : null;
 }
+function deleteCookie(name: string): void {
+	document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
 function Header() {
 	const router = useRouter();
@@ -50,7 +53,9 @@ function Header() {
 				>
 					Contact
 				</div>
-				<Link href={"#pricing"} className="section">Pricing</Link>
+				<Link href={"#pricing"} className="section">
+					Pricing
+				</Link>
 				<div className="section">About Us</div>
 
 				{!username ? (
@@ -63,10 +68,23 @@ function Header() {
 						</div>
 					</>
 				) : (
-					<div className="profile">
-						<h3 className="username">{username}</h3>
-						<Pfp />
-					</div>
+					<>
+						<div
+							className="section"
+							onClick={() => {
+								deleteCookie("username")
+								deleteCookie("account")
+
+								router.refresh();
+							}}
+						>
+							Sign Out
+						</div>
+						<div className="profile">
+							<h3 className="username">{username}</h3>
+							<Pfp />
+						</div>
+					</>
 				)}
 
 				<Theme visibility={true} />

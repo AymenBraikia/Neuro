@@ -75,8 +75,10 @@ app.post("/signup", async (req, res) => {
 
 	users.insertOne({ username: info.username, email: info.email, password: info.password });
 
-	res.cookie("username", info.username);
-	res.redirect(req.headers.origin || "http://localhost:3000/");
+	res
+		.status(200)
+		.cookie("username", info.username)
+		.redirect(req.headers.origin || "http://localhost:3000/");
 });
 
 app.post("/signin", async (req, res) => {
@@ -100,8 +102,10 @@ app.post("/signin", async (req, res) => {
 			.redirect(req.headers.origin + "/error");
 		return;
 	}
-	res.cookie("username", data.username);
-	res.redirect(req.headers.origin || "http://localhost:3000/");
+	res
+		.status(200)
+		.cookie("username", data.username)
+		.redirect(req.headers.origin || "http://localhost:3000/");
 });
 
 app.listen(port, () => {
