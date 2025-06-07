@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const userPfp = () => (
 	<svg width="30" height="30" viewBox="0 0 20 20" version="1.1">
 		<title>profile</title>
