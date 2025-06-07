@@ -291,9 +291,6 @@ function loadMessages(name: string) {
 	const h1 = document.querySelector("h1");
 	if (h1) h1.parentElement?.removeChild(h1);
 }
-// setTimeout(() => {
-// loadMessages("Unknown Topic");
-// }, 1500);
 
 function Body() {
 	let currentTopic: string | null = null;
