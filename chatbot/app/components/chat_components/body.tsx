@@ -137,7 +137,7 @@ async function fetchReply(question: Array<object>): Promise<string> {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: "Bearer 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",
+			Authorization: "Bearer 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",
 		},
 		body: JSON.stringify({
 			messages: question,
