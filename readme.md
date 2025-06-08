@@ -40,7 +40,6 @@ This project was built to demonstrate:
 <img src="./chatbot//public/signup.png" alt="Neuro AI Sign in page" width="600" />
 <img src="./chatbot//public/chat.png" alt="Neuro AI Chatpage" width="600" />
 
-_(Replace with actual screenshots if available)_
 
 ---
 
