@@ -29,6 +29,8 @@ This project was built to demonstrate:
 ## 🔧 Tech Stack
 
 - **Frontend**: React (Next)
+- **Backend**: Node.js/Express
+- **Database**: Mongodb
 - **Styling**: Pure CSS
 - **Hosting**: Vercel/Render
 
