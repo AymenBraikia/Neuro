@@ -51,8 +51,21 @@ To run this project locally:
 # Clone the repo
 git clone https://github.com/AymenBraikia/neuro-ai.git
 
-# Navigate into the project directory
-cd neuro-ai
+# Front end part
+
+# Navigate into the client directory
+cd chatbot
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
+# Back end part
+
+# Navigate into the server directory
+cd chatbot
 
 # Install dependencies
 npm install
