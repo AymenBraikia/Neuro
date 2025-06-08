@@ -1,6 +1,6 @@
 # 🧠 Neuro AI
 
-**Neuro AI** is a visually engaging landing page for a fictional AI startup. Designed to be modern, responsive, and minimal, it showcases your frontend development and design skills using React and Tailwind CSS.
+**Neuro AI** is a visually engaging landing page for a fictional AI startup. Designed to be modern, responsive, and minimal, it showcases your frontend development and design skills using React and Next JS.
 
 > 🔗 [Live Demo](https://neuro-ai-ten.vercel.app/)
 
@@ -9,10 +9,10 @@
 ## 🎯 Purpose
 
 This project was built to demonstrate:
+
 - A clean landing page layout
 - Scroll-based UI sections
 - Responsive design
-- Styling with Tailwind CSS
 
 ---
 
@@ -28,18 +28,19 @@ This project was built to demonstrate:
 
 ## 🔧 Tech Stack
 
-- **Frontend**: React (Vite)
-- **Styling**: Tailwind CSS
-- **Hosting**: Vercel
+- **Frontend**: React (Next)
+- **Styling**: Pure CSS
+- **Hosting**: Vercel/Render
 
 ---
 
 ## 📸 Screenshots
 
-<img src="https://neuro-ai-ten.vercel.app/screenshot1.png" alt="Neuro AI Homepage" width="600" />
-<img src="https://neuro-ai-ten.vercel.app/screenshot2.png" alt="Responsive Design" width="600" />
+<img src="./chatbot//public/homepage.png" alt="Neuro AI Home page" width="600" />
+<img src="./chatbot//public/signup.png" alt="Neuro AI Sign in page" width="600" />
+<img src="./chatbot//public/chat.png" alt="Neuro AI Chatpage" width="600" />
 
-*(Replace with actual screenshots if available)*
+_(Replace with actual screenshots if available)_
 
 ---
 
@@ -59,3 +60,4 @@ npm install
 
 # Run the development server
 npm run dev
+```
